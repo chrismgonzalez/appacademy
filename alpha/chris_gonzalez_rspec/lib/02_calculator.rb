@@ -25,3 +25,7 @@ def sum(arr)
 
 end
 
+def multiply(a, b)
+  a * b
+end
+
