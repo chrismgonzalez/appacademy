@@ -39,4 +39,10 @@ def factorial(num)
   if num == 0
     return 0
   end
+
+  total = 1
+  (1..num).each do |num|
+    total *= num
+  end
+  total
 end
