@@ -25,7 +25,12 @@ def sum(arr)
 
 end
 
-def multiply(a, b)
-  a * b
+def multiply(numbers)
+  result = 1
+  numbers.each {|n| result = result * n}
+  result
 end
 
+def power(num1, num2)
+  return num1 ** num2
+end
