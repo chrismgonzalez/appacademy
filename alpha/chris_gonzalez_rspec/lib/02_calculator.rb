@@ -34,3 +34,9 @@ end
 def power(num1, num2)
   return num1 ** num2
 end
+
+def factorial(num)
+  if num == 0
+    return 0
+  end
+end
