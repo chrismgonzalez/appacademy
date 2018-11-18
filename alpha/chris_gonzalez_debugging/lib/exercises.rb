@@ -9,7 +9,7 @@ LITTLE_WORDS = [
 ]
 
 def titleize(title)
-  debugger
+  #debugger
   words = title.split(" ")
 
   titleized_words = words.map_with_index do |word, idx|
