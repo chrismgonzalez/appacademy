@@ -9,7 +9,6 @@ require 'byebug'
   ]
 
   def titleize(title)
-    debugger
     words = title.split(" ")
     titleized_words = words.map.with_index do |word, i|
       if i != 0 && LITTLE_WORDS.include?(word)
@@ -27,8 +26,9 @@ require 'byebug'
 
 # Write a method that returns the largest prime factor of a given integer.
 
-def prime?(num)
-  (2..num).none? { |factor| num % factor == 0 }
+def prime(num)
+ # debugger
+  (2..num/2).none?{ |i| num % i == 0 }
 end
 
 def largest_prime_factor(num)
@@ -37,6 +37,7 @@ def largest_prime_factor(num)
       return factor if prime(factor)
     end
   end
+   nil
 end
 
 
