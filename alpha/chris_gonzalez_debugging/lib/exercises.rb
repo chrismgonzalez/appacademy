@@ -27,7 +27,6 @@ require 'byebug'
 # Write a method that returns the largest prime factor of a given integer.
 
 def prime(num)
- # debugger
   (2..num/2).none?{ |i| num % i == 0 }
 end
 
@@ -46,16 +45,14 @@ end
 # Only include substrings of length > 1.
 
 def symmetric_substrings(str)
-  symm_subs = ""
-
-  str.length.times do |start_pos|
-    (2..(length - start_pos)).each do |len|
-      substr = str[start_pos...(start_pos + len)]
-      symm_subs << substr if substr = substr.reverse
-    end
-  end
-
-  symm_subs
+  output = []
+  (2..str.length).each do |wordsize|
+      (0...str.length).each_cons(wordsize) do |positions|
+        subword = str[positions.first .. positions.last]
+        output << subword if subword == subword.reverse
+end
+end
+output
 end
 
 
