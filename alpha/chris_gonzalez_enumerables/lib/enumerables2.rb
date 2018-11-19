@@ -5,6 +5,10 @@ require 'byebug'
 # Define a method that returns the sum of all the elements in its argument (an
 # array of numbers).
 def array_sum(arr)
+  if arr.length == 0
+    return 0
+  end
+  arr.reduce(:+)
 end
 
 # Define a method that returns a boolean indicating whether substring is a
