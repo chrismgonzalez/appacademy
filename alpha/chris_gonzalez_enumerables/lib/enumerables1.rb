@@ -3,7 +3,7 @@
 # Define a method that returns an array of only the even numbers in its argument
 # (an array of integers).
 def get_evens(arr)
-  arr.select {| i | i % 2 == 0}
+  arr.select {| int | int.even? }
 end
 
 # Define a method that returns a new array of all the elements in its argument
@@ -35,6 +35,8 @@ end
 # the actual retail price without going over that price. Assume there is always
 # at least one bid below the retail price.
 def price_is_right(bids, actual_retail_price)
+  lower_bids = bids.reject {|bid| bid > actual_retail_price}
+  lower_bids.max
 end
 
 # Given an array of numbers, return an array of those numbers that have at least
@@ -43,9 +45,11 @@ end
 # 2, 4, 8, 16) and the others have fewer than five factors. Consider writing a
 # helper method num_factors
 def at_least_n_factors(numbers, n)
+  numbers.select { |number| num_factors(number) >= n}
 end
 
 def num_factors(number)
+  (1..number).count { |n| number % n == 0}
 end
 
 # HARD
@@ -54,11 +58,20 @@ end
 # words whose vowels appear in order. You may wish to write a helper method:
 # ordered_vowel_word?
 def ordered_vowel_words(words)
+  words.select do |word|
+    ordered_vowel_word?(word)
+  end
 end
 
 def ordered_vowel_word?(word)
+  vowels = "aeiou"
+
+  vowels_in_word = word.chars.select do |letter|
+    vowels.include?(letter)
 end
 
+vowels_in_word == vowels_in_word.sort
+end
 # Given an array of numbers, return an array of all the products remaining when
 # each element is removed from the array. You may wish to write a helper method:
 # array_product.
@@ -72,7 +85,9 @@ end
 # 10, because you take out 3, leaving 1 * 2 * 5 6, because you take out 5,
 # leaving 1 * 2 * 3
 def products_except_me(numbers)
+  numbers.map.with_index do |num, idx|
+    sub_array = numbers[0...idx] + numbers[idx + 1..-1]
+    sub_array.reduce(:*)
+  end
 end
 
-def array_product(array)
-end
