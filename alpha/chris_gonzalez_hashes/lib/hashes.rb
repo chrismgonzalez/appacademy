@@ -3,11 +3,16 @@
 # Define a method that, given a sentence, returns a hash of each of the words as
 # keys with their lengths as values. Assume the argument lacks punctuation.
 def word_lengths(str)
+  lengths = {}
+  words = str.split
+  words.each {|word| lengths[word] = word.length}
+  lengths
 end
 
 # Define a method that, given a hash with integers as values, returns the key
 # with the largest value.
 def greatest_key_by_val(hash)
+  hash.sort_by { |k, v| v}.last.first
 end
 
 # Define a method that accepts two hashes as arguments: an older inventory and a
@@ -18,11 +23,23 @@ end
 # update_inventory(march, april) => {rubies: 10, emeralds: 27, diamonds: 2,
 # moonstones: 5}
 def update_inventory(older, newer)
+  newer.each do |k, v|
+    older[k] = v
+  end
+
+  older
 end
 
 # Define a method that, given a word, returns a hash with the letters in the
 # word as keys and the frequencies of the letters as values.
 def letter_counts(word)
+  counter_hash = Hash.new(0)
+
+  word.each_char do |ch|
+    counter_hash[ch] += 1
+  end
+
+  counter_hash
 end
 
 # MEDIUM
@@ -30,17 +47,37 @@ end
 # Define a method that, given an array, returns that array without duplicates.
 # Use a hash! Don't use the uniq method.
 def my_uniq(arr)
+  mine_for_keys = {}
+
+  arr.each {|el| mine_for_keys[el] = true}
+  mine_for_keys.keys
 end
 
 # Define a method that, given an array of numbers, returns a hash with "even"
 # and "odd" as keys and the frequency of each parity as values.
 def evens_and_odds(numbers)
+  count = {"even" => 0, "odd" => 0}
+
+  numbers.each do |number|
+    count["even"] += 1 if number.even?
+    count["odd"] += 1 if number.odd?
+  end
+
+  count
 end
 
 # Define a method that, given a string, returns the most common vowel. Do
-# not worry about ordering in the case of a tie. Assume all letters are 
+# not worry about ordering in the case of a tie. Assume all letters are
 # lower case.
 def most_common_vowel(string)
+  vowels = %w(a e i o u)
+  counts = Hash.new(0)
+
+  string.each_char do |char|
+    counts[char] += if vowels.include?(char)
+  end
+
+    counts.sort_by {|k, v| v}.last.first
 end
 
 # HARD
@@ -53,8 +90,20 @@ end
 # fall_and_winter_birthdays(students_with_birthdays) => [ ["Bertie", "Dottie"],
 # ["Bertie", "Warren"], ["Dottie", "Warren"] ]
 def fall_and_winter_birthdays(students)
+  students = students_with_birthdays.select do |student, month|
+    month >= 7
 end
 
+names = students.keys
+result = []
+
+names.each_index do |idx1|
+  ((idx1 + 1)...names.length).each do |idx2|
+    result << [ names[idx1], names[idx2] ]
+  end
+end
+result
+end
 # Define a method that, given an array of specimens, returns the biodiversity
 # index as defined by the following formula: number_of_species**2 *
 # smallest_population_size / largest_population_size biodiversity_index(["cat",
