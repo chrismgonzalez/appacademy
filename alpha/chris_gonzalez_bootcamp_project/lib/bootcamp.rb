@@ -34,14 +34,12 @@ class Bootcamp
         return true
         end
         false
-        
+
       end
 
       def enrolled?(student)
           if @students.include?(student)
-            return true
-        end
-        false
+          end
       end
 
 end
