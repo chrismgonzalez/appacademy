@@ -32,17 +32,16 @@ class Bootcamp
       if @students.length < @student_capacity
         @students << student
         return true
-        else
-        return false
         end
+        false
+        
       end
 
       def enrolled?(student)
           if @students.include?(student)
             return true
-          else
-            return false
         end
+        false
       end
 
 end
