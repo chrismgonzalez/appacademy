@@ -1,6 +1,6 @@
 class Room
-  def initialize(number)
-    @capacity = number
+  def initialize(capacity)
+    @capacity = capacity
     @occupants = []
   end
 
@@ -16,7 +16,7 @@ class Room
     if @occupants.length == @capacity
       return true
     end
-    false
+    return false
   end
 
   def available_space
@@ -28,7 +28,7 @@ class Room
       @occupants << person
       return true
     end
-    false
+    return false
 
   end
 end
