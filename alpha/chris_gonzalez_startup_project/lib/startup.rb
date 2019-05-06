@@ -55,7 +55,7 @@ class Startup
      sum +=  @salaries[employee.title]
     end
 
-    sum / @employees.length
+    sum / (@employees.length * 1.0)
   end
 
   def close
@@ -64,7 +64,22 @@ class Startup
   end
 
   def acquire(startup)
+    #merge funding
+    @funding += startup.funding
 
+    #merge salaries
+    startup.salaries.each do |title, amount|
+     if !@salaries.has_key?(title)
+      @salaries[title] = amount
+     end
+    end
+
+    #hire employees
+    @employees += startup.employees
+
+    #close existing startup
+
+    startup.close
   end
 
 end
