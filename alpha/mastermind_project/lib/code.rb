@@ -5,5 +5,5 @@ class Code
     "B" => :blue,
     "Y" => :yellow
   }
-
+  
 end
